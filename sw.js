@@ -7,7 +7,7 @@
  * Bump CACHE_NAME every time you ship a new build of
  * pickleball_draw_wheel.html so installed copies pick up the change.
  */
-var CACHE_NAME = "pb-draw-wheel-shell-v2";
+var CACHE_NAME = "pb-draw-wheel-shell-v3";
 var CORE = ["./", "./pickleball_draw_wheel.html", "./assets/speedup-logo.png"];
 
 // Must match the constants in pickleball_draw_wheel.html -- this is the
