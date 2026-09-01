@@ -1,0 +1,2585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Pickleball Draw Wheel</title>
+<meta name="description" content="Live pool draw wheel for Speedup pickleball tournaments." />
+<meta name="theme-color" content="#187339" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Draw Wheel" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%2796%27%20fill%3D%27%23187339%27%2F%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27256%27%20r%3D%27150%27%20fill%3D%27%23f7f7f4%27%2F%3E%3Cg%20fill%3D%27%23187339%27%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27186%27%20r%3D%2719%27%2F%3E%3Ccircle%20cx%3D%27198%27%20cy%3D%27236%27%20r%3D%2719%27%2F%3E%3Ccircle%20cx%3D%27314%27%20cy%3D%27236%27%20r%3D%2719%27%2F%3E%3Ccircle%20cx%3D%27222%27%20cy%3D%27306%27%20r%3D%2719%27%2F%3E%3Ccircle%20cx%3D%27290%27%20cy%3D%27306%27%20r%3D%2719%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%2796%27%20fill%3D%27%23187339%27%2F%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27256%27%20r%3D%27150%27%20fill%3D%27%23f7f7f4%27%2F%3E%3Cg%20fill%3D%27%23187339%27%3E%3Ccircle%20cx%3D%27256%27%20cy%3D%27186%27%20r%3D%2719%27%2F%3E%3Ccircle%20cx%3D%27198%27%20cy%3D%27236%27%20r%3D%2719%27%2F%3E%3Ccircle%20cx%3D%27314%27%20cy%3D%27236%27%20r%3D%2719%27%2F%3E%3Ccircle%20cx%3D%27222%27%20cy%3D%27306%27%20r%3D%2719%27%2F%3E%3Ccircle%20cx%3D%27290%27%20cy%3D%27306%27%20r%3D%2719%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiUGlja2xlYmFsbCBEcmF3IFdoZWVsIiwic2hvcnRfbmFtZSI6IkRyYXcgV2hlZWwiLCJkZXNjcmlwdGlvbiI6IkxpdmUgcG9vbCBkcmF3IHdoZWVsIGZvciBTcGVlZHVwIHBpY2tsZWJhbGwgdG91cm5hbWVudHMuIiwic3RhcnRfdXJsIjoiLi9waWNrbGViYWxsX2RyYXdfd2hlZWwuaHRtbCIsInNjb3BlIjoiLi8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZjVmN2ZiIiwidGhlbWVfY29sb3IiOiIjMTg3MzM5IiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmclMjB4bWxucyUzRCUyN2h0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyNyUyMHZpZXdCb3glM0QlMjcwJTIwMCUyMDUxMiUyMDUxMiUyNyUzRSUzQ3JlY3QlMjB3aWR0aCUzRCUyNzUxMiUyNyUyMGhlaWdodCUzRCUyNzUxMiUyNyUyMHJ4JTNEJTI3OTYlMjclMjBmaWxsJTNEJTI3JTIzMTg3MzM5JTI3JTJGJTNFJTNDY2lyY2xlJTIwY3glM0QlMjcyNTYlMjclMjBjeSUzRCUyNzI1NiUyNyUyMHIlM0QlMjcxNTAlMjclMjBmaWxsJTNEJTI3JTIzZjdmN2Y0JTI3JTJGJTNFJTNDZyUyMGZpbGwlM0QlMjclMjMxODczMzklMjclM0UlM0NjaXJjbGUlMjBjeCUzRCUyNzI1NiUyNyUyMGN5JTNEJTI3MTg2JTI3JTIwciUzRCUyNzE5JTI3JTJGJTNFJTNDY2lyY2xlJTIwY3glM0QlMjcxOTglMjclMjBjeSUzRCUyNzIzNiUyNyUyMHIlM0QlMjcxOSUyNyUyRiUzRSUzQ2NpcmNsZSUyMGN4JTNEJTI3MzE0JTI3JTIwY3klM0QlMjcyMzYlMjclMjByJTNEJTI3MTklMjclMkYlM0UlM0NjaXJjbGUlMjBjeCUzRCUyNzIyMiUyNyUyMGN5JTNEJTI3MzA2JTI3JTIwciUzRCUyNzE5JTI3JTJGJTNFJTNDY2lyY2xlJTIwY3glM0QlMjcyOTAlMjclMjBjeSUzRCUyNzMwNiUyNyUyMHIlM0QlMjcxOSUyNyUyRiUzRSUzQyUyRmclM0UlM0MlMkZzdmclM0UiLCJzaXplcyI6ImFueSIsInR5cGUiOiJpbWFnZS9zdmcreG1sIiwicHVycG9zZSI6ImFueSJ9LHsic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyUyMHhtbG5zJTNEJTI3aHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTI3JTIwdmlld0JveCUzRCUyNzAlMjAwJTIwNTEyJTIwNTEyJTI3JTNFJTNDcmVjdCUyMHdpZHRoJTNEJTI3NTEyJTI3JTIwaGVpZ2h0JTNEJTI3NTEyJTI3JTIwZmlsbCUzRCUyNyUyMzE4NzMzOSUyNyUyRiUzRSUzQ2NpcmNsZSUyMGN4JTNEJTI3MjU2JTI3JTIwY3klM0QlMjcyNTYlMjclMjByJTNEJTI3MTE4JTI3JTIwZmlsbCUzRCUyNyUyM2Y3ZjdmNCUyNyUyRiUzRSUzQ2clMjBmaWxsJTNEJTI3JTIzMTg3MzM5JTI3JTNFJTNDY2lyY2xlJTIwY3glM0QlMjcyNTYlMjclMjBjeSUzRCUyNzIwMiUyNyUyMHIlM0QlMjcxNSUyNyUyRiUzRSUzQ2NpcmNsZSUyMGN4JTNEJTI3MjEwJTI3JTIwY3klM0QlMjcyNDIlMjclMjByJTNEJTI3MTUlMjclMkYlM0UlM0NjaXJjbGUlMjBjeCUzRCUyNzMwMiUyNyUyMGN5JTNEJTI3MjQyJTI3JTIwciUzRCUyNzE1JTI3JTJGJTNFJTNDY2lyY2xlJTIwY3glM0QlMjcyMjklMjclMjBjeSUzRCUyNzI5OCUyNyUyMHIlM0QlMjcxNSUyNyUyRiUzRSUzQ2NpcmNsZSUyMGN4JTNEJTI3MjgzJTI3JTIwY3klM0QlMjcyOTglMjclMjByJTNEJTI3MTUlMjclMkYlM0UlM0MlMkZnJTNFJTNDJTJGc3ZnJTNFIiwic2l6ZXMiOiJhbnkiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCIsInB1cnBvc2UiOiJtYXNrYWJsZSJ9XX0=" />
+<style>
+  :root {
+    /* Tournament Manager's own brand tokens (see app/static/css/style.css)
+       -- this page deliberately reuses them exactly, rather than
+       inventing a separate palette, so it reads as the same product as
+       the app it hands its results back to. */
+    --primary: #187339;
+    --primary-dark: #010101;
+    --primary-light: #18733914;
+    --success: #1fae71;
+    --success-light: #e7f8f0;
+    --danger: #e6483f;
+    --danger-light: #fdedec;
+    --warning: #f5a623;
+    --warning-light: #fef6e7;
+    --bronze: #b0703a;
+    --bronze-light: #f7ece2;
+    --ink: #29314d;
+    --muted: #8a94a6;
+    --border: #e7eaf3;
+    --surface: #ffffff;
+    --canvas: #f5f7fb;
+
+    --radius-card: 14px;
+    --radius-control: 8px;
+    --shadow-card:
+      0 1px 2px rgba(23, 32, 63, 0.04), 0 1px 12px rgba(23, 32, 63, 0.04);
+    --shadow-wheel:
+      0 16px 40px rgba(23, 32, 63, 0.14), 0 2px 8px rgba(23, 32, 63, 0.08);
+    --display: "Arial Black", "Helvetica Neue", Impact, sans-serif;
+    --ui:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--ui);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  ::selection {
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  .app {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 24px 64px;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .brand .ball {
+    font-size: 1.3rem;
+  }
+  .brand h1 {
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+    letter-spacing: 0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .brand .tag {
+    color: var(--muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+  }
+
+  .steps {
+    display: flex;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    border-radius: 999px;
+    padding: 5px;
+  }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px 7px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .step .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: var(--canvas);
+    color: var(--muted);
+    font-family: var(--ui);
+    font-variant-numeric: tabular-nums;
+  }
+  .step.active {
+    color: var(--ink);
+  }
+  .step.active .dot {
+    background: var(--primary);
+    color: #fff;
+  }
+  .step.done .dot {
+    background: var(--success);
+    color: #fff;
+  }
+
+  .screen {
+    display: none;
+  }
+  .screen.visible {
+    display: block;
+    animation: fadein 0.35s ease both;
+  }
+  @keyframes fadein {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ---------- setup screen ("backstage") ---------- */
+  .setup-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 860px) {
+    .setup-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-card);
+    padding: 22px;
+  }
+  .panel h2 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .panel .hint {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0 0 16px;
+    max-width: 46ch;
+  }
+
+  .field {
+    margin-bottom: 14px;
+  }
+  .field label {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  textarea,
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    border-radius: var(--radius-control);
+    padding: 10px 12px;
+    font-family: var(--ui);
+    font-size: 0.92rem;
+  }
+  textarea:focus,
+  input[type="text"]:focus,
+  input[type="number"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(24, 115, 57, 0.15);
+  }
+  textarea {
+    min-height: 108px;
+    resize: vertical;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    background: var(--canvas);
+  }
+  textarea::placeholder,
+  input::placeholder {
+    color: var(--muted);
+  }
+
+  .row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink);
+    border-radius: var(--radius-control);
+    padding: 9px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition:
+      transform 0.12s ease,
+      border-color 0.12s ease,
+      background 0.12s ease;
+  }
+  .btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
+  .btn:active {
+    transform: translateY(0);
+  }
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    font-weight: 700;
+  }
+  .btn-primary:hover {
+    border-color: var(--primary-dark);
+    background: var(--primary-dark);
+    color: #fff;
+  }
+  .btn-ghost {
+    background: transparent;
+  }
+  .btn-danger-ghost {
+    background: transparent;
+    color: var(--danger);
+    border-color: var(--danger-light);
+  }
+  .btn-danger-ghost:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+    background: var(--danger-light);
+  }
+  .btn-sm {
+    padding: 5px 11px;
+    font-size: 0.76rem;
+  }
+  .file-input {
+    display: none;
+  }
+
+  .roster-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .roster-list::-webkit-scrollbar {
+    width: 8px;
+  }
+  .roster-list::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 8px;
+  }
+
+  .roster-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--canvas);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    padding: 8px 10px;
+  }
+  .roster-row .num {
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    font-size: 0.78rem;
+    width: 1.6em;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .roster-row input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 9px;
+    font-size: 0.85rem;
+    background: transparent;
+    border-color: transparent;
+  }
+  .roster-row input[type="text"]:hover {
+    border-color: var(--border);
+  }
+  .roster-row .sep {
+    color: var(--muted);
+  }
+  .roster-row button {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1;
+    padding: 4px 6px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .roster-row button:hover {
+    color: var(--danger);
+    background: var(--danger-light);
+  }
+
+  .empty-note {
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 18px 4px;
+    text-align: center;
+  }
+
+  .count-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--canvas);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .count-pill b {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .letters-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .letter-chip {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: var(--primary-light);
+    border: 1px solid var(--border);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .warn-note {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    background: var(--warning-light);
+    border: 1px solid rgba(245, 166, 35, 0.35);
+    color: #8a5a10;
+    border-radius: var(--radius-control);
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    margin-top: 12px;
+  }
+  .error-note {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    background: var(--danger-light);
+    border: 1px solid rgba(230, 72, 63, 0.35);
+    color: #8a231d;
+    border-radius: var(--radius-control);
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+  input.input-error {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 0.2rem rgba(230, 72, 63, 0.15);
+  }
+
+  .begin-bar {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- draw screen ---------- */
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+    gap: 26px;
+    align-items: start;
+  }
+  @media (max-width: 980px) {
+    .stage {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .wheel-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .wheel-wrap {
+    position: relative;
+    width: min(430px, 86vw);
+    aspect-ratio: 1;
+    filter: drop-shadow(var(--shadow-wheel));
+  }
+  .pointer {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 26px solid var(--ink);
+    z-index: 3;
+    filter: drop-shadow(0 2px 3px rgba(23, 32, 63, 0.25));
+  }
+  .wheel-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform: rotate(0deg);
+    transition: transform 4.6s cubic-bezier(0.13, 0.66, 0.1, 1);
+    border-radius: 50%;
+  }
+  .wheel-rim {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 8px solid var(--surface);
+    box-shadow:
+      inset 0 0 0 2px var(--border),
+      var(--shadow-card);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .hub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 27%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    border: 5px solid var(--surface);
+    display: grid;
+    place-items: center;
+    font-family: var(--display);
+    font-size: clamp(0.85rem, 2.4vw, 1.15rem);
+    letter-spacing: 0.03em;
+    z-index: 4;
+    box-shadow: 0 8px 22px rgba(24, 115, 57, 0.35);
+    transition:
+      transform 0.12s ease,
+      filter 0.2s ease;
+  }
+  .hub:not(:disabled):hover {
+    transform: translate(-50%, -50%) scale(1.04);
+    background: var(--primary-dark);
+  }
+  .hub:disabled {
+    filter: grayscale(0.5) brightness(1.3);
+    cursor: not-allowed;
+  }
+
+  .empty-wheel {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--canvas);
+    border: 1px dashed var(--border);
+  }
+
+  .reveal {
+    min-height: 68px;
+    text-align: center;
+  }
+  .reveal .name {
+    font-family: var(--display);
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    text-wrap: balance;
+    color: var(--ink);
+    animation: pop 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .reveal .into {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+  .reveal .into b {
+    color: var(--primary);
+  }
+
+  .assign-choice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .assign-choice button {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    border-radius: var(--radius-control);
+    padding: 8px 14px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: var(--shadow-card);
+  }
+  .assign-choice button:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-light);
+  }
+  .assign-choice button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .mode-toggle {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    border-radius: 999px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .mode-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .mode-toggle button.active {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .progress-line {
+    width: 100%;
+    max-width: 430px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+  }
+
+  .pool-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+    align-content: start;
+  }
+  .pool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-card);
+    padding: 14px 14px 10px;
+    transition:
+      border-color 0.5s ease,
+      background 0.5s ease;
+  }
+  .pool-card.flash {
+    border-color: var(--primary);
+    background: linear-gradient(180deg, var(--primary-light), var(--surface));
+  }
+  .pool-card .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .pool-card .letter {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  .pool-card .fill {
+    font-size: 0.74rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .pool-card .fill.under-min {
+    color: var(--danger);
+    font-weight: 700;
+  }
+  .pool-card .fill.at-max {
+    color: var(--warning);
+    font-weight: 700;
+  }
+  .calc-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .calc-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: var(--canvas);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+  .calc-option.best {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .calc-option.infeasible {
+    opacity: 0.55;
+  }
+  .calc-option .info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .calc-option .count {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .calc-option .breakdown {
+    color: var(--muted);
+  }
+  .calc-option .badge {
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .calc-option .badge.warn {
+    background: var(--danger);
+  }
+  .calc-empty {
+    color: var(--muted);
+    font-size: 0.83rem;
+    padding: 4px 2px 10px;
+  }
+  .result-card .below-min {
+    flex: 1 0 100%;
+    color: var(--danger);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+  .pool-card ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-height: 28px;
+  }
+  .pool-card li {
+    font-size: 0.83rem;
+    padding: 5px 8px;
+    border-radius: 7px;
+    background: var(--canvas);
+    color: var(--ink);
+    border: 1px solid transparent;
+  }
+  .pool-card li.slot-empty {
+    color: var(--muted);
+    background: transparent;
+    border: 1px dashed var(--border);
+  }
+  .pool-card li.just-added {
+    animation: slotin 0.5s ease both;
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  @keyframes slotin {
+    from {
+      opacity: 0;
+      transform: translateX(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ---------- results screen ---------- */
+  .results-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .results-head h2 {
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin: 0 0 4px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .results-head p {
+    color: var(--muted);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .result-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-card);
+    padding: 16px;
+  }
+  .result-card .letter {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: var(--ink);
+  }
+  .result-card .letter .n {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+  .result-card ol {
+    list-style: decimal;
+    margin: 0;
+    padding-left: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+  .result-card li::marker {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .csv-note {
+    background: var(--success-light);
+    border: 1px solid rgba(31, 174, 113, 0.3);
+    border-radius: var(--radius-control);
+    padding: 12px 14px;
+    font-size: 0.82rem;
+    color: #0f5c3d;
+    margin-bottom: 18px;
+  }
+  .csv-note code {
+    background: rgba(31, 174, 113, 0.14);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 0.82em;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--ink);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    box-shadow: var(--shadow-wheel);
+    opacity: 0;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+    pointer-events: none;
+    z-index: 50;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .footer-note {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.76rem;
+    margin-top: 40px;
+    letter-spacing: 0.02em;
+  }
+
+  .vis-hidden {
+    display: none !important;
+  }
+  /* logo styles */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .brand .ball {
+    width: 148px;
+    height: auto;
+  }
+
+  .brand > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .brand h1 {
+    margin: 0;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    line-height: 1;
+  }
+
+  .brand .tag {
+    margin-top: 6px;
+    font-size: 0.95rem;
+  }
+
+  /* ---------- build-expiry gate ---------- */
+  #expiryVeil {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--canvas);
+    font-family: var(--ui);
+    color: var(--ink);
+  }
+  #expiryVeil .card {
+    max-width: 420px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-wheel);
+    padding: 28px;
+    text-align: center;
+  }
+  #expiryVeil .icon {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  #expiryVeil h1 {
+    font-size: 1.25rem;
+    margin: 0 0 8px;
+  }
+  #expiryVeil p {
+    margin: 0 0 4px;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .expiry-soon {
+    color: var(--warning) !important;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header class="masthead">
+    <div class="brand">
+      <img
+        src="file:///Users/bonaxelbryanremoreras/Documents/Development/pickleball_webapp/app/static/assets/speedup-logo.png"
+        alt="Pickleball"
+        class="ball"
+      />
+      <div>
+        <h1>Draw Wheel</h1>
+        <div class="tag">Live pool draw for Speedup tournaments</div>
+      </div>
+    </div>
+    <nav class="steps" aria-label="Draw progress">
+      <div class="step" data-step="setup">
+        <span class="dot">1</span> Roster
+      </div>
+      <div class="step" data-step="draw"><span class="dot">2</span> Draw</div>
+      <div class="step" data-step="results">
+        <span class="dot">3</span> Export
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ SCREEN 1: SETUP ============ -->
+  <section class="screen" id="screen-setup">
+    <div class="setup-grid">
+      <div class="panel">
+        <h2>Load the roster</h2>
+        <p class="hint">
+          Paste the CSV from Tournament Manager's
+          <strong>Export CSV</strong> button on the Teams page, or type one team
+          per line as <code>Player 1 / Player 2</code>. Teams are already paired
+          -- this wheel only decides which pool each team lands in.
+        </p>
+
+        <div class="field">
+          <label for="pasteBox"
+            >Paste team list, or drop a CSV file below</label
+          >
+          <textarea
+            id="pasteBox"
+            placeholder="Wade Smith / Wes Cruz&#10;Wren Diaz / Wyn Torres&#10;Xavi Reyes / Xane Bautista&#10;&#8230;or paste a Tournament Manager CSV export directly"
+          ></textarea>
+        </div>
+        <div class="row">
+          <button class="btn" id="btnLoadPaste">Load pasted list</button>
+          <button class="btn btn-ghost" id="btnPickFile">
+            Upload CSV file
+          </button>
+          <input
+            type="file"
+            accept=".csv,text/csv"
+            class="file-input"
+            id="fileInput"
+          />
+          <span class="count-pill" id="parseStatus">No teams loaded yet</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Review &amp; adjust</h2>
+        <p class="hint">
+          Fix a typo, remove a scratch, or add a late entry -- whatever's here
+          is exactly what goes on the wheel.
+        </p>
+        <ul class="roster-list" id="rosterList"></ul>
+        <div class="row" style="margin-top: 10px">
+          <button class="btn btn-sm" id="btnAddRow">+ Add team</button>
+          <button class="btn btn-sm btn-danger-ghost" id="btnClearAll">
+            Clear all
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top: 20px">
+      <h2>Group setup</h2>
+      <p class="hint">
+        Enter your pair count and the min/max you want per pool. Pool count
+        is locked to a real bracket format --
+        <strong>4 pools (Round of 8), 8 pools (Round of 16), or 16 pools
+        (Round of 32)</strong>
+        -- and the calculator only shows whichever of those fit your range.
+      </p>
+      <div class="row">
+        <div class="field" style="max-width: 150px">
+          <label for="calcPairs">Number of pairs</label>
+          <input type="number" id="calcPairs" min="0" max="500" value="0" />
+        </div>
+        <div class="field" style="max-width: 150px">
+          <label for="minPerPool">Min per pool</label>
+          <input type="number" id="minPerPool" min="1" max="50" value="4" />
+        </div>
+        <div class="field" style="max-width: 150px">
+          <label for="maxPerPool">Max per pool</label>
+          <input type="number" id="maxPerPool" min="1" max="50" value="6" />
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-sm btn-ghost vis-hidden"
+        id="btnSyncCalcPairs"
+      ></button>
+
+      <div class="calc-options" id="calcOptions"></div>
+
+      <div class="field" style="max-width: 220px; margin-top: 4px">
+        <label for="numGroups">Number of pools to use</label>
+        <input
+          type="number"
+          id="numGroups"
+          min="1"
+          max="16"
+          value="4"
+          list="bracketPoolList"
+        />
+        <datalist id="bracketPoolList">
+          <option value="4">Round of 8</option>
+          <option value="8">Round of 16</option>
+          <option value="16">Round of 32</option>
+        </datalist>
+      </div>
+      <span class="count-pill vis-hidden" id="bracketLabel"></span>
+      <div class="letters-preview" id="lettersPreview"></div>
+      <div class="error-note vis-hidden" id="bracketError"></div>
+      <div class="warn-note vis-hidden" id="groupWarn"></div>
+
+      <div class="begin-bar">
+        <span class="count-pill"
+          ><b id="teamCountBig">0</b>&nbsp;teams loaded</span
+        >
+        <button class="btn btn-primary" id="btnBegin" disabled>
+          Begin the Draw &rarr;
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 2: DRAW ============ -->
+  <section class="screen" id="screen-draw">
+    <div class="stage">
+      <div class="wheel-col">
+        <div class="mode-toggle" role="group" aria-label="Assignment mode">
+          <button data-mode="auto" class="active" id="modeAuto">
+            Auto-balance
+          </button>
+          <button data-mode="manual" id="modeManual">Choose group</button>
+        </div>
+
+        <div class="wheel-wrap">
+          <div class="pointer" aria-hidden="true"></div>
+          <div class="wheel-rim" aria-hidden="true"></div>
+          <svg class="wheel-svg" id="wheelSvg" viewBox="0 0 300 300"></svg>
+          <div class="empty-wheel vis-hidden" id="emptyWheel"></div>
+          <button class="hub" id="spinBtn">SPIN</button>
+        </div>
+
+        <div class="progress-line">
+          <span id="progressLabel">0 / 0 assigned</span>
+          <div class="progress-track">
+            <div
+              class="progress-fill"
+              id="progressFill"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="reveal" id="reveal" aria-live="polite"></div>
+      </div>
+
+      <div class="pool-strip" id="poolStrip"></div>
+    </div>
+
+    <div class="begin-bar" style="margin-top: 26px">
+      <button class="btn btn-ghost" id="btnBackToSetup">
+        &larr; Back to roster
+      </button>
+      <button class="btn btn-primary vis-hidden" id="btnToResults">
+        See final draw &rarr;
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 3: RESULTS ============ -->
+  <section class="screen" id="screen-results">
+    <div class="results-head">
+      <div>
+        <h2>The draw is set &#127881;</h2>
+        <p>
+          Every team below is grouped and ready. Send this back to Tournament
+          Manager to finish setup.
+        </p>
+      </div>
+      <div class="row">
+        <button class="btn btn-ghost" id="btnCopyText">Copy as text</button>
+        <button class="btn btn-primary" id="btnDownloadCsv">
+          Download CSV for Tournament Manager
+        </button>
+      </div>
+    </div>
+
+    <div class="csv-note">
+      This file matches Tournament Manager's own format exactly -- open
+      <b>Teams &rarr; Import Teams</b> and upload it. Already-registered teams
+      get moved into their drawn pool automatically; nothing is duplicated, and
+      payment records are left untouched.
+    </div>
+
+    <div class="results-grid" id="resultsGrid"></div>
+
+    <div class="begin-bar">
+      <button class="btn btn-ghost" id="btnBackToDraw">
+        &larr; Back to draw
+      </button>
+      <button class="btn btn-danger-ghost" id="btnStartOver">
+        Start a new draw
+      </button>
+    </div>
+  </section>
+
+  <p class="footer-note">
+    Runs entirely in this browser tab &middot; nothing here is connected to
+    Tournament Manager until you import the CSV
+  </p>
+  <p class="footer-note" id="expiryNote"></p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  (function () {
+    "use strict";
+
+    // -----------------------------------------------------------------
+    // 30-day trial, counted from the first time this copy is opened on
+    // a given browser/device. After that it locks itself for good on
+    // that device -- it does not reset by reopening it, reinstalling
+    // the PWA, or going offline.
+    //
+    // The "first opened" timestamp is written to every storage a static
+    // page has (localStorage, a cookie, IndexedDB, Cache Storage) so a
+    // partial clear doesn't quietly restart the clock, and the
+    // installed PWA's service worker enforces the same check for the
+    // app shell, even offline.
+    //
+    // Note: all of that lives in this browser/device's storage -- there
+    // is no server behind it. Wiping all site data, a private window,
+    // or a different browser/device starts a fresh trial. This deters
+    // casual reuse past the trial, it does not prevent a determined
+    // user.
+    // -----------------------------------------------------------------
+    var TRIAL_DAYS = 30;
+    var DAY_MS = 86400000;
+    var TRIAL_MS = TRIAL_DAYS * DAY_MS;
+
+    var FIRST_OPEN_KEY = "pb-draw-wheel-first-open-v1";
+    var FIRST_OPEN_COOKIE = "pbdw_first_open";
+    var FIRST_OPEN_DB = "pb-draw-wheel-trial-db";
+    var FIRST_OPEN_CACHE = "pb-draw-wheel-trial-v1";
+    var FIRST_OPEN_URL = "/__pb_draw_wheel_first_open__"; // synthetic Cache Storage key, never fetched
+
+    function showVeil(iconChar, title, messages) {
+      try {
+        document.body.innerHTML = "";
+        document.documentElement.style.overflow = "hidden";
+      } catch (e) {}
+      var veil = document.createElement("div");
+      veil.id = "expiryVeil";
+      veil.setAttribute("role", "alertdialog");
+      veil.setAttribute("aria-modal", "true");
+      var msgHtml = messages
+        .map(function (m) {
+          return "<p>" + m + "</p>";
+        })
+        .join("");
+      veil.innerHTML =
+        '<div class="card">' +
+        '<div class="icon" aria-hidden="true">' +
+        iconChar +
+        "</div>" +
+        "<h1>" +
+        title +
+        "</h1>" +
+        msgHtml +
+        "</div>";
+      (document.body || document.documentElement).appendChild(veil);
+    }
+
+    function showTrialExpiredVeil(startedAt) {
+      var pretty =
+        isFinite(startedAt) &&
+        new Date(startedAt).toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+      showVeil("&#9202;", "This draw wheel's trial has ended", [
+        (pretty ? "It was first opened on " + pretty + " and " : "It ") +
+          "ran for its " + TRIAL_DAYS + "-day trial.",
+        "Ask the tournament organiser for a fresh copy.",
+      ]);
+    }
+
+    function readLocalFirstOpen() {
+      try {
+        var v = parseInt(localStorage.getItem(FIRST_OPEN_KEY), 10);
+        return isFinite(v) ? v : null;
+      } catch (e) {
+        return null;
+      }
+    }
+    function readCookieFirstOpen() {
+      var m = document.cookie.match(new RegExp("(?:^|; )" + FIRST_OPEN_COOKIE + "=(\\d+)"));
+      var v = m && parseInt(m[1], 10);
+      return v && isFinite(v) ? v : null;
+    }
+    function writeFirstOpenSync(ts) {
+      try {
+        localStorage.setItem(FIRST_OPEN_KEY, String(ts));
+      } catch (e) {}
+      var d = new Date();
+      d.setFullYear(d.getFullYear() + 5);
+      document.cookie =
+        FIRST_OPEN_COOKIE + "=" + ts + "; expires=" + d.toUTCString() + "; path=/; SameSite=Lax";
+    }
+    function idbReadFirstOpen() {
+      return new Promise(function (resolve) {
+        if (!window.indexedDB) return resolve(null);
+        try {
+          var req = indexedDB.open(FIRST_OPEN_DB, 1);
+          req.onupgradeneeded = function () {
+            req.result.createObjectStore("flags");
+          };
+          req.onsuccess = function () {
+            try {
+              var getReq = req.result
+                .transaction("flags", "readonly")
+                .objectStore("flags")
+                .get("firstOpen");
+              getReq.onsuccess = function () {
+                var v = getReq.result;
+                resolve(typeof v === "number" && isFinite(v) ? v : null);
+              };
+              getReq.onerror = function () {
+                resolve(null);
+              };
+            } catch (e) {
+              resolve(null);
+            }
+          };
+          req.onerror = function () {
+            resolve(null);
+          };
+        } catch (e) {
+          resolve(null);
+        }
+      });
+    }
+    function idbWriteFirstOpen(ts) {
+      if (!window.indexedDB) return;
+      try {
+        var req = indexedDB.open(FIRST_OPEN_DB, 1);
+        req.onupgradeneeded = function () {
+          req.result.createObjectStore("flags");
+        };
+        req.onsuccess = function () {
+          try {
+            req.result.transaction("flags", "readwrite").objectStore("flags").put(ts, "firstOpen");
+          } catch (e) {}
+        };
+      } catch (e) {}
+    }
+    function cacheReadFirstOpen() {
+      if (!window.caches) return Promise.resolve(null);
+      return caches
+        .open(FIRST_OPEN_CACHE)
+        .then(function (c) {
+          return c.match(FIRST_OPEN_URL);
+        })
+        .then(function (r) {
+          return r
+            ? r.text().then(function (t) {
+                var v = parseInt(t, 10);
+                return isFinite(v) ? v : null;
+              })
+            : null;
+        })
+        .catch(function () {
+          return null;
+        });
+    }
+    function cacheWriteFirstOpen(ts) {
+      if (!window.caches) return;
+      caches
+        .open(FIRST_OPEN_CACHE)
+        .then(function (c) {
+          c.put(FIRST_OPEN_URL, new Response(String(ts), { headers: { "Content-Type": "text/plain" } }));
+        })
+        .catch(function () {});
+    }
+
+    // Fast, synchronous check: localStorage + cookie. If either already
+    // has a start date, honor the earlier of the two.
+    var syncTs = (function () {
+      var a = readLocalFirstOpen();
+      var b = readCookieFirstOpen();
+      if (a && b) return Math.min(a, b);
+      return a || b || null;
+    })();
+
+    var firstOpenAt;
+    if (syncTs) {
+      firstOpenAt = syncTs;
+      if (Date.now() > firstOpenAt + TRIAL_MS) {
+        showTrialExpiredVeil(firstOpenAt);
+        return; // hard stop -- none of the app below runs
+      }
+      writeFirstOpenSync(firstOpenAt); // keep both sync stores in step
+    } else {
+      // No sync record. Provisionally treat this as a first-ever open
+      // (fast path, so a legitimate new user isn't kept waiting on
+      // IndexedDB/Cache Storage) -- the reconciliation below corrects
+      // this if an older record turns up there instead.
+      firstOpenAt = Date.now();
+      writeFirstOpenSync(firstOpenAt);
+    }
+
+    // Belt-and-suspenders: reconcile against IndexedDB / Cache Storage
+    // too, in case only some stores were cleared. Whichever timestamp
+    // is earliest wins and gets re-synced everywhere; if that pushes
+    // this copy past its trial, it locks the moment the check resolves.
+    Promise.all([idbReadFirstOpen(), cacheReadFirstOpen()]).then(function (results) {
+      var candidates = [firstOpenAt];
+      results.forEach(function (v) {
+        if (typeof v === "number" && isFinite(v)) candidates.push(v);
+      });
+      var earliest = Math.min.apply(Math, candidates);
+      writeFirstOpenSync(earliest);
+      idbWriteFirstOpen(earliest);
+      cacheWriteFirstOpen(earliest);
+      if (Date.now() > earliest + TRIAL_MS) {
+        showTrialExpiredVeil(earliest);
+      }
+    });
+
+    var STORAGE_KEY = "pb-draw-wheel-state-v1";
+    // Tournament Manager's own brand colors (primary green + its
+    // success/warning/bronze accents), rotated for slice variety -- a
+    // green/gold/bronze cycle reads as "podium colors" for a tournament
+    // draw, not an arbitrary palette.
+    var SLICE_COLORS = [
+      "#187339",
+      "#f5a623",
+      "#1fae71",
+      "#b0703a",
+      "#4a9c68",
+      "#8a94a6",
+    ];
+
+    /** @type {{teams: {id:number, p1:string, p2:string}[], numGroups: number, screen: string, groups: Object<string, {id:number,p1:string,p2:string}[]>, unassigned: number[], mode: string, nextId: number}} */
+    var state = null;
+
+    function freshState() {
+      return {
+        teams: [],
+        numGroups: 4,
+        minPerPool: 4,
+        maxPerPool: 6,
+        calcPairs: 0,
+        calcPairsManual: false,
+        screen: "setup",
+        groups: {},
+        unassigned: [],
+        mode: "auto",
+        nextId: 1,
+      };
+    }
+
+    function save() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        /* ignore quota errors */
+      }
+    }
+
+    function load() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {
+        /* ignore corrupt storage */
+      }
+      return null;
+    }
+
+    state = load() || freshState();
+    // Backfill fields for state saved by an older version of this page.
+    if (!state.minPerPool) state.minPerPool = 4;
+    if (!state.maxPerPool) state.maxPerPool = 6;
+    if (!state.calcPairs) state.calcPairs = 0;
+    if (!state.calcPairsManual) state.calcPairsManual = false;
+
+    // ---------------------------------------------------------------
+    // Parsing: accepts a Tournament Manager CSV export (Pool, Player 1,
+    // ..., Player 2, ...) or a plain "Name 1 / Name 2" per line paste.
+    // ---------------------------------------------------------------
+    function parseCsvLine(line) {
+      // Minimal CSV cell splitter -- handles simple quoted commas, which
+      // is all Tournament Manager's export ever produces (plain names).
+      var cells = [];
+      var cur = "";
+      var inQuotes = false;
+      for (var i = 0; i < line.length; i++) {
+        var ch = line[i];
+        if (ch === '"') {
+          inQuotes = !inQuotes;
+          continue;
+        }
+        if (ch === "," && !inQuotes) {
+          cells.push(cur);
+          cur = "";
+          continue;
+        }
+        cur += ch;
+      }
+      cells.push(cur);
+      return cells.map(function (c) {
+        return c.trim();
+      });
+    }
+
+    function parseInput(text) {
+      var lines = text
+        .split(/\r?\n/)
+        .map(function (l) {
+          return l.trim();
+        })
+        .filter(Boolean);
+      if (!lines.length) return [];
+
+      var header = parseCsvLine(lines[0]).map(function (h) {
+        return h.toLowerCase();
+      });
+      var p1Idx = header.indexOf("player 1");
+      var p2Idx = header.indexOf("player 2");
+
+      var out = [];
+      if (p1Idx !== -1 && p2Idx !== -1) {
+        // Tournament Manager shaped CSV -- ignore Pool/payment columns
+        // entirely; this wheel decides the pool fresh.
+        for (var i = 1; i < lines.length; i++) {
+          var cells = parseCsvLine(lines[i]);
+          var p1 = (cells[p1Idx] || "").trim();
+          var p2 = (cells[p2Idx] || "").trim();
+          if (p1 || p2) out.push({ p1: p1, p2: p2 });
+        }
+        return out;
+      }
+
+      // Plain paste: one team per line, "Name / Name" (also accepts " & ").
+      for (var j = 0; j < lines.length; j++) {
+        var line = lines[j];
+        var parts = line.split(/\s*\/\s*|\s+&\s+/);
+        if (parts.length >= 2) {
+          out.push({
+            p1: parts[0].trim(),
+            p2: parts.slice(1).join(" / ").trim(),
+          });
+        } else {
+          out.push({ p1: line.trim(), p2: "" });
+        }
+      }
+      return out;
+    }
+
+    // ---------------------------------------------------------------
+    // Roster editing (setup screen)
+    // ---------------------------------------------------------------
+    var rosterListEl = document.getElementById("rosterList");
+    var parseStatusEl = document.getElementById("parseStatus");
+    var teamCountBigEl = document.getElementById("teamCountBig");
+    var lettersPreviewEl = document.getElementById("lettersPreview");
+    var groupWarnEl = document.getElementById("groupWarn");
+    var numGroupsInput = document.getElementById("numGroups");
+    var minPerPoolInput = document.getElementById("minPerPool");
+    var maxPerPoolInput = document.getElementById("maxPerPool");
+    var calcPairsInput = document.getElementById("calcPairs");
+    var btnSyncCalcPairs = document.getElementById("btnSyncCalcPairs");
+    var calcOptionsEl = document.getElementById("calcOptions");
+    var bracketLabelEl = document.getElementById("bracketLabel");
+    var bracketErrorEl = document.getElementById("bracketError");
+    var btnBegin = document.getElementById("btnBegin");
+
+    // The tournament software's own bracket formats -- pool play only ever
+    // feeds into a Round of 8, 16, or 32, so the pool count itself (not
+    // just the per-pool size) is locked to whichever of these produce it.
+    var BRACKET_POOL_COUNTS = [4, 8, 16];
+    var BRACKET_LABELS = { 4: "Round of 8", 8: "Round of 16", 16: "Round of 32" };
+
+    // Even split of n teams across g groups: `extra` of them get one more.
+    function poolSizeRange(n, g) {
+      if (g <= 0) return { lo: 0, hi: 0 };
+      var base = Math.floor(n / g);
+      var extra = n % g;
+      return { lo: base, hi: extra > 0 ? base + 1 : base };
+    }
+
+    function letterFor(index) {
+      // A, B, ... Z, AA, AB, ... -- mirrors Tournament Manager's own pool
+      // lettering so a Group here always matches a real Pool letter.
+      var s = "";
+      index += 1;
+      while (index > 0) {
+        var rem = (index - 1) % 26;
+        s = String.fromCharCode(65 + rem) + s;
+        index = Math.floor((index - 1) / 26);
+      }
+      return s;
+    }
+
+    function renderRoster() {
+      rosterListEl.innerHTML = "";
+      if (!state.teams.length) {
+        var empty = document.createElement("li");
+        empty.className = "empty-note";
+        empty.textContent = "No teams yet -- paste a list or add one below.";
+        rosterListEl.appendChild(empty);
+      } else {
+        state.teams.forEach(function (team, idx) {
+          var row = document.createElement("li");
+          row.className = "roster-row";
+
+          var num = document.createElement("span");
+          num.className = "num";
+          num.textContent = idx + 1 + ".";
+
+          var p1 = document.createElement("input");
+          p1.type = "text";
+          p1.value = team.p1;
+          p1.setAttribute("aria-label", "Player 1 name");
+          p1.addEventListener("input", function () {
+            team.p1 = p1.value;
+            save();
+          });
+
+          var sep = document.createElement("span");
+          sep.className = "sep";
+          sep.textContent = "/";
+
+          var p2 = document.createElement("input");
+          p2.type = "text";
+          p2.value = team.p2;
+          p2.setAttribute("aria-label", "Player 2 name");
+          p2.addEventListener("input", function () {
+            team.p2 = p2.value;
+            save();
+          });
+
+          var del = document.createElement("button");
+          del.type = "button";
+          del.innerHTML = "&times;";
+          del.setAttribute("aria-label", "Remove team");
+          del.addEventListener("click", function () {
+            state.teams = state.teams.filter(function (t) {
+              return t.id !== team.id;
+            });
+            save();
+            renderRoster();
+            syncGroupStats();
+          });
+
+          row.appendChild(num);
+          row.appendChild(p1);
+          row.appendChild(sep);
+          row.appendChild(p2);
+          row.appendChild(del);
+          rosterListEl.appendChild(row);
+        });
+      }
+      parseStatusEl.innerHTML = state.teams.length
+        ? "<b>" + state.teams.length + "</b>&nbsp;team(s) loaded"
+        : "No teams loaded yet";
+      teamCountBigEl.textContent = state.teams.length;
+    }
+
+    // Renders every pool count between the feasible bounds (capped to the
+    // 8 closest to the [min,max] midpoint, so an unusually wide min/max
+    // range can't flood the panel with dozens of rows). Each row is
+    // clickable and sets "Number of pools to use" directly.
+    // Only the three real bracket formats are ever offered: 4 pools (Round
+    // of 8), 8 pools (Round of 16), 16 pools (Round of 32). A pool count
+    // "fits" a given pair total when splitting evenly keeps every pool
+    // inside [min, max].
+    function bracketFits(pairs, pools, min, max) {
+      var r = poolSizeRange(pairs, pools);
+      return r.lo >= min && r.hi <= max;
+    }
+
+    function renderCalculatorOptions(pairs, min, max, currentGroups) {
+      calcOptionsEl.innerHTML = "";
+
+      if (pairs <= 0) {
+        var empty = document.createElement("div");
+        empty.className = "calc-empty";
+        empty.textContent = "Enter a pair count above to see pool options.";
+        calcOptionsEl.appendChild(empty);
+        return;
+      }
+
+      var target = (min + max) / 2;
+      var fitting = BRACKET_POOL_COUNTS.filter(function (g) {
+        return bracketFits(pairs, g, min, max);
+      });
+      var best = null;
+      fitting.forEach(function (g) {
+        if (
+          best === null ||
+          Math.abs(pairs / g - target) < Math.abs(pairs / best - target)
+        ) {
+          best = g;
+        }
+      });
+
+      if (!fitting.length) {
+        var note = document.createElement("div");
+        note.className = "calc-empty";
+        note.textContent =
+          pairs +
+          " pairs doesn't fit any bracket format with " +
+          min +
+          "–" +
+          max +
+          " per pool. Widen your min/max, or aim for " +
+          BRACKET_POOL_COUNTS.map(function (g) {
+            return g * min + "–" + g * max + " pairs (" + BRACKET_LABELS[g] + ")";
+          }).join(", ") +
+          ".";
+        calcOptionsEl.appendChild(note);
+      }
+
+      BRACKET_POOL_COUNTS.forEach(function (g) {
+        var r = poolSizeRange(pairs, g);
+        var fits = bracketFits(pairs, g, min, max);
+        var isBest = g === best;
+        var isSelected = g === currentGroups;
+
+        var row = document.createElement("div");
+        row.className =
+          "calc-option" + (isBest ? " best" : "") + (fits ? "" : " infeasible");
+
+        var info = document.createElement("div");
+        info.className = "info";
+        info.innerHTML =
+          '<span class="count">' +
+          g +
+          " pools</span><span class=\"breakdown\">" +
+          BRACKET_LABELS[g] +
+          " -- " +
+          (r.lo === r.hi ? r.lo : r.lo + "–" + r.hi) +
+          " pairs each</span>";
+        if (isBest) {
+          var badge = document.createElement("span");
+          badge.className = "badge";
+          badge.textContent = "Best fit";
+          info.appendChild(badge);
+        }
+        if (!fits) {
+          var warnBadge = document.createElement("span");
+          warnBadge.className = "badge warn";
+          warnBadge.textContent = r.lo < min ? "Below min" : "Above max";
+          info.appendChild(warnBadge);
+        }
+        row.appendChild(info);
+
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "btn btn-sm" + (isSelected ? "" : " btn-ghost");
+        btn.textContent = isSelected ? "Selected" : "Use";
+        btn.disabled = isSelected;
+        btn.addEventListener("click", function () {
+          numGroupsInput.value = g;
+          syncGroupStats();
+        });
+        row.appendChild(btn);
+
+        calcOptionsEl.appendChild(row);
+      });
+    }
+
+    function syncGroupStats() {
+      var min = Math.max(
+        1,
+        Math.min(50, parseInt(minPerPoolInput.value, 10) || 1),
+      );
+      var max = Math.max(
+        min,
+        Math.min(50, parseInt(maxPerPoolInput.value, 10) || min),
+      );
+      minPerPoolInput.value = min;
+      maxPerPoolInput.value = max;
+      state.minPerPool = min;
+      state.maxPerPool = max;
+
+      var n = Math.max(
+        1,
+        Math.min(16, parseInt(numGroupsInput.value, 10) || 1),
+      );
+      numGroupsInput.value = n;
+      state.numGroups = n;
+
+      // Error trap: pool count must match a real bracket format (Round of
+      // 8/16/32 -> 4/8/16 pools). Anything else is blocked from starting
+      // the draw, since it wouldn't seed into a bracket Tournament Manager
+      // actually runs.
+      var isValidBracket = BRACKET_POOL_COUNTS.indexOf(n) !== -1;
+      numGroupsInput.classList.toggle("input-error", !isValidBracket);
+      if (isValidBracket) {
+        bracketErrorEl.classList.add("vis-hidden");
+        bracketLabelEl.innerHTML = "&#10003;&nbsp;" + BRACKET_LABELS[n];
+        bracketLabelEl.classList.remove("vis-hidden");
+      } else {
+        bracketLabelEl.classList.add("vis-hidden");
+        bracketErrorEl.textContent =
+          "Pool count must be 4, 8, or 16 to match a real bracket (Round of " +
+          "8, 16, or 32) -- pick an option from the calculator above, or " +
+          "enter one of those numbers directly.";
+        bracketErrorEl.classList.remove("vis-hidden");
+      }
+
+      var teamCount = state.teams.length;
+
+      lettersPreviewEl.innerHTML = "";
+      for (var i = 0; i < n; i++) {
+        var chip = document.createElement("span");
+        chip.className = "letter-chip";
+        chip.textContent = letterFor(i);
+        lettersPreviewEl.appendChild(chip);
+      }
+
+      // The calculator's pair count follows the loaded roster automatically
+      // unless the organizer has typed a number of their own (planning
+      // ahead of a roster, or exploring a "what if" count).
+      if (!state.calcPairsManual) {
+        calcPairsInput.value = teamCount;
+      }
+      var pairs = Math.max(
+        0,
+        Math.min(500, parseInt(calcPairsInput.value, 10) || 0),
+      );
+      calcPairsInput.value = pairs;
+      state.calcPairs = pairs;
+
+      btnSyncCalcPairs.textContent =
+        "Use loaded roster count (" + teamCount + ")";
+      btnSyncCalcPairs.classList.toggle(
+        "vis-hidden",
+        !state.calcPairsManual || teamCount === 0,
+      );
+
+      renderCalculatorOptions(pairs, min, max, n);
+
+      var warnMsgs = [];
+      if (teamCount > 0 && n > teamCount) {
+        warnMsgs.push(
+          "You have more groups than teams -- some groups will end up empty.",
+        );
+      }
+      if (teamCount > 0) {
+        var range = poolSizeRange(teamCount, n);
+        if (range.lo < min || range.hi > max) {
+          warnMsgs.push(
+            "With " +
+              n +
+              " group" +
+              (n === 1 ? "" : "s") +
+              ", pools will have " +
+              (range.lo === range.hi
+                ? range.lo
+                : range.lo + "–" + range.hi) +
+              " teams each -- outside your " +
+              min +
+              "–" +
+              max +
+              " per-pool range.",
+          );
+        }
+      }
+      if (warnMsgs.length) {
+        groupWarnEl.textContent = warnMsgs.join(" ");
+        groupWarnEl.classList.remove("vis-hidden");
+      } else {
+        groupWarnEl.classList.add("vis-hidden");
+      }
+
+      var incomplete = state.teams.some(function (t) {
+        return !t.p1.trim() || !t.p2.trim();
+      });
+      btnBegin.disabled = teamCount < 2 || incomplete || !isValidBracket;
+      save();
+    }
+
+    document
+      .getElementById("btnLoadPaste")
+      .addEventListener("click", function () {
+        var parsed = parseInput(document.getElementById("pasteBox").value);
+        if (!parsed.length) {
+          showToast("Nothing recognizable in that paste.");
+          return;
+        }
+        parsed.forEach(function (t) {
+          state.teams.push({ id: state.nextId++, p1: t.p1, p2: t.p2 });
+        });
+        document.getElementById("pasteBox").value = "";
+        renderRoster();
+        syncGroupStats();
+        showToast("Loaded " + parsed.length + " team(s).");
+      });
+
+    document
+      .getElementById("btnPickFile")
+      .addEventListener("click", function () {
+        document.getElementById("fileInput").click();
+      });
+    document
+      .getElementById("fileInput")
+      .addEventListener("change", function (e) {
+        var file = e.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function () {
+          var parsed = parseInput(String(reader.result));
+          if (!parsed.length) {
+            showToast("Couldn't find any teams in that file.");
+            return;
+          }
+          parsed.forEach(function (t) {
+            state.teams.push({ id: state.nextId++, p1: t.p1, p2: t.p2 });
+          });
+          renderRoster();
+          syncGroupStats();
+          showToast(
+            "Loaded " + parsed.length + " team(s) from " + file.name + ".",
+          );
+        };
+        reader.readAsText(file);
+        e.target.value = "";
+      });
+
+    document.getElementById("btnAddRow").addEventListener("click", function () {
+      state.teams.push({ id: state.nextId++, p1: "", p2: "" });
+      renderRoster();
+      syncGroupStats();
+      var inputs = rosterListEl.querySelectorAll(".roster-row input");
+      if (inputs.length) inputs[inputs.length - 2].focus();
+    });
+
+    document
+      .getElementById("btnClearAll")
+      .addEventListener("click", function () {
+        if (!state.teams.length) return;
+        if (
+          !confirm(
+            "Remove all " + state.teams.length + " team(s) from the list?",
+          )
+        )
+          return;
+        state.teams = [];
+        renderRoster();
+        syncGroupStats();
+      });
+
+    numGroupsInput.addEventListener("input", syncGroupStats);
+    minPerPoolInput.addEventListener("input", syncGroupStats);
+    maxPerPoolInput.addEventListener("input", syncGroupStats);
+    calcPairsInput.addEventListener("input", function () {
+      state.calcPairsManual = true;
+      syncGroupStats();
+    });
+    btnSyncCalcPairs.addEventListener("click", function () {
+      state.calcPairsManual = false;
+      syncGroupStats();
+    });
+
+    document.getElementById("btnBegin").addEventListener("click", function () {
+      state.groups = {};
+      for (var i = 0; i < state.numGroups; i++) state.groups[letterFor(i)] = [];
+      state.unassigned = state.teams.map(function (t) {
+        return t.id;
+      });
+      shuffle(state.unassigned);
+      goToScreen("draw");
+      renderDrawScreen(true);
+    });
+
+    // ---------------------------------------------------------------
+    // Draw screen (the wheel itself)
+    // ---------------------------------------------------------------
+    var wheelSvg = document.getElementById("wheelSvg");
+    var spinBtn = document.getElementById("spinBtn");
+    var revealEl = document.getElementById("reveal");
+    var poolStripEl = document.getElementById("poolStrip");
+    var progressLabelEl = document.getElementById("progressLabel");
+    var progressFillEl = document.getElementById("progressFill");
+    var emptyWheelEl = document.getElementById("emptyWheel");
+    var btnToResults = document.getElementById("btnToResults");
+    var currentRotation = 0;
+    var spinning = false;
+    var pendingManualTeamId = null;
+
+    function shuffle(arr) {
+      for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+      }
+      return arr;
+    }
+
+    function teamById(id) {
+      for (var i = 0; i < state.teams.length; i++)
+        if (state.teams[i].id === id) return state.teams[i];
+      return null;
+    }
+
+    function polarToCartesian(cx, cy, r, angleDeg) {
+      var rad = ((angleDeg - 90) * Math.PI) / 180;
+      return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+    }
+
+    function arcPath(cx, cy, r, startAngle, endAngle) {
+      var start = polarToCartesian(cx, cy, r, startAngle);
+      var end = polarToCartesian(cx, cy, r, endAngle);
+      var largeArc = endAngle - startAngle > 180 ? 1 : 0;
+      return [
+        "M",
+        cx,
+        cy,
+        "L",
+        start.x,
+        start.y,
+        "A",
+        r,
+        r,
+        0,
+        largeArc,
+        1,
+        end.x,
+        end.y,
+        "Z",
+      ].join(" ");
+    }
+
+    function renderWheel() {
+      var n = state.unassigned.length;
+      wheelSvg.innerHTML = "";
+      emptyWheelEl.classList.toggle("vis-hidden", n > 0);
+      spinBtn.disabled = n === 0 || spinning;
+
+      if (n === 0) return;
+
+      var cx = 150,
+        cy = 150,
+        r = 148;
+      var slice = 360 / n;
+      for (var i = 0; i < n; i++) {
+        var path = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "path",
+        );
+        path.setAttribute("d", arcPath(cx, cy, r, i * slice, (i + 1) * slice));
+        path.setAttribute("fill", SLICE_COLORS[i % SLICE_COLORS.length]);
+        path.setAttribute("stroke", "#ffffff");
+        path.setAttribute("stroke-width", "2");
+        wheelSvg.appendChild(path);
+      }
+    }
+
+    function assignedCount() {
+      var n = 0;
+      Object.keys(state.groups).forEach(function (k) {
+        n += state.groups[k].length;
+      });
+      return n;
+    }
+
+    function renderPoolStrip(justFilledLetter, justAddedTeamId) {
+      poolStripEl.innerHTML = "";
+      var maxSlots = state.teams.length
+        ? Math.ceil(state.teams.length / Math.max(1, state.numGroups)) + 1
+        : 4;
+
+      Object.keys(state.groups)
+        .sort()
+        .forEach(function (letter) {
+          var teamsHere = state.groups[letter];
+          var card = document.createElement("div");
+          card.className =
+            "pool-card" + (letter === justFilledLetter ? " flash" : "");
+
+          var drawDone =
+            state.teams.length > 0 && state.unassigned.length === 0;
+          var fillClass = "fill";
+          if (drawDone && teamsHere.length < state.minPerPool) {
+            fillClass += " under-min";
+          } else if (
+            state.maxPerPool &&
+            teamsHere.length >= state.maxPerPool
+          ) {
+            fillClass += " at-max";
+          }
+
+          var head = document.createElement("div");
+          head.className = "head";
+          head.innerHTML =
+            '<span class="letter">Group ' +
+            letter +
+            '</span><span class="' +
+            fillClass +
+            '">' +
+            teamsHere.length +
+            " / " +
+            (state.maxPerPool || "∞") +
+            " team" +
+            (teamsHere.length === 1 ? "" : "s") +
+            "</span>";
+          card.appendChild(head);
+
+          var ol = document.createElement("ol");
+          var slotsToShow = Math.max(teamsHere.length, Math.min(maxSlots, 3));
+          for (var i = 0; i < slotsToShow; i++) {
+            var li = document.createElement("li");
+            if (i < teamsHere.length) {
+              var t = teamsHere[i];
+              li.textContent = t.p1 + " / " + t.p2;
+              if (t.id === justAddedTeamId) li.className = "just-added";
+            } else {
+              li.className = "slot-empty";
+              li.textContent = "—";
+            }
+            ol.appendChild(li);
+          }
+          card.appendChild(ol);
+          poolStripEl.appendChild(card);
+        });
+    }
+
+    function renderProgress() {
+      var total = state.teams.length;
+      var done = assignedCount();
+      progressLabelEl.textContent = done + " / " + total + " assigned";
+      progressFillEl.style.width = (total ? (done / total) * 100 : 0) + "%";
+      btnToResults.classList.toggle("vis-hidden", done < total || total === 0);
+    }
+
+    function smallestGroupLetter() {
+      var letters = Object.keys(state.groups).sort();
+      var max = state.maxPerPool || Infinity;
+      // Prefer groups still under the max-per-pool cap; only spill over
+      // into full groups if every group has already hit it (e.g. more
+      // teams than the group count times the cap can hold).
+      var candidates = letters.filter(function (l) {
+        return state.groups[l].length < max;
+      });
+      var pool = candidates.length ? candidates : letters;
+      var best = pool[0];
+      pool.forEach(function (l) {
+        if (state.groups[l].length < state.groups[best].length) best = l;
+      });
+      return best;
+    }
+
+    function commitAssignment(teamId, letter) {
+      var team = teamById(teamId);
+      state.groups[letter].push(team);
+      state.unassigned = state.unassigned.filter(function (id) {
+        return id !== teamId;
+      });
+      save();
+      renderPoolStrip(letter, teamId);
+      renderProgress();
+      renderWheel();
+      var strip = poolStripEl;
+      setTimeout(function () {
+        var flashed = strip.querySelector(".pool-card.flash");
+        if (flashed) flashed.classList.remove("flash");
+      }, 1200);
+    }
+
+    function showManualChoice(teamId) {
+      pendingManualTeamId = teamId;
+      var wrap = document.createElement("div");
+      wrap.className = "assign-choice";
+      var letters = Object.keys(state.groups).sort();
+      var max = state.maxPerPool || Infinity;
+      // If every group is already at the cap (more teams than groups *
+      // max can hold), stop enforcing it rather than stranding the team.
+      var allFull = letters.every(function (l) {
+        return state.groups[l].length >= max;
+      });
+      letters.forEach(function (letter) {
+        var full = !allFull && state.groups[letter].length >= max;
+        var btn = document.createElement("button");
+        btn.textContent = "Group " + letter + (full ? " (full)" : "");
+        btn.disabled = full;
+        btn.addEventListener("click", function () {
+          commitAssignment(teamId, letter);
+          pendingManualTeamId = null;
+          revealEl.querySelector(".assign-choice").remove();
+          spinBtn.disabled = state.unassigned.length === 0;
+        });
+        wrap.appendChild(btn);
+      });
+      revealEl.appendChild(wrap);
+    }
+
+    function doSpin() {
+      if (spinning || state.unassigned.length === 0) return;
+      spinning = true;
+      spinBtn.disabled = true;
+      revealEl.innerHTML = "";
+
+      var n = state.unassigned.length;
+      var winnerIdx = Math.floor(Math.random() * n);
+      var winnerId = state.unassigned[winnerIdx];
+      var team = teamById(winnerId);
+
+      function afterLanding() {
+        var nameEl = document.createElement("div");
+        nameEl.className = "name";
+        nameEl.textContent = team.p1 + " / " + team.p2;
+        revealEl.appendChild(nameEl);
+
+        if (state.mode === "auto") {
+          var letter = smallestGroupLetter();
+          var intoEl = document.createElement("div");
+          intoEl.className = "into";
+          intoEl.innerHTML = "goes into <b>Group " + letter + "</b>";
+          revealEl.appendChild(intoEl);
+          commitAssignment(winnerId, letter);
+          spinning = false;
+          spinBtn.disabled = state.unassigned.length === 0;
+        } else {
+          var pickEl = document.createElement("div");
+          pickEl.className = "into";
+          pickEl.textContent = "pick a group:";
+          revealEl.appendChild(pickEl);
+          showManualChoice(winnerId);
+          spinning = false; // spin button re-enabled once a group is chosen
+        }
+      }
+
+      // Down to the last team: skip the (pointless, single-slice) spin
+      // animation and go straight to a celebratory reveal.
+      if (n === 1) {
+        setTimeout(afterLanding, 250);
+        return;
+      }
+
+      var sliceAngle = 360 / n;
+      var winnerCenter = winnerIdx * sliceAngle + sliceAngle / 2;
+      var currentMod = ((currentRotation % 360) + 360) % 360;
+      var desiredMod = (360 - winnerCenter) % 360;
+      var delta = desiredMod - currentMod;
+      if (delta <= 0) delta += 360;
+      var extraSpins = 5 + Math.floor(Math.random() * 3);
+      currentRotation += delta + extraSpins * 360;
+      wheelSvg.style.transform = "rotate(" + currentRotation + "deg)";
+
+      var handled = false;
+      function onEnd(e) {
+        if (e && e.propertyName !== "transform") return;
+        if (handled) return;
+        handled = true;
+        wheelSvg.removeEventListener("transitionend", onEnd);
+        afterLanding();
+      }
+      wheelSvg.addEventListener("transitionend", onEnd);
+      // Safety net in case transitionend doesn't fire (tab backgrounded, etc.)
+      setTimeout(onEnd, 5200);
+    }
+
+    spinBtn.addEventListener("click", doSpin);
+
+    document.getElementById("modeAuto").addEventListener("click", function () {
+      setMode("auto");
+    });
+    document
+      .getElementById("modeManual")
+      .addEventListener("click", function () {
+        setMode("manual");
+      });
+    function setMode(mode) {
+      state.mode = mode;
+      document
+        .getElementById("modeAuto")
+        .classList.toggle("active", mode === "auto");
+      document
+        .getElementById("modeManual")
+        .classList.toggle("active", mode === "manual");
+      save();
+    }
+
+    function renderDrawScreen(reset) {
+      if (reset) currentRotation = 0;
+      setMode(state.mode || "auto");
+      renderWheel();
+      renderPoolStrip();
+      renderProgress();
+      revealEl.innerHTML = "";
+    }
+
+    document
+      .getElementById("btnToResults")
+      .addEventListener("click", function () {
+        goToScreen("results");
+        renderResults();
+      });
+    document
+      .getElementById("btnBackToSetup")
+      .addEventListener("click", function () {
+        goToScreen("setup");
+      });
+
+    // ---------------------------------------------------------------
+    // Results screen + CSV export (Tournament Manager's exact shape)
+    // ---------------------------------------------------------------
+    var resultsGridEl = document.getElementById("resultsGrid");
+
+    function csvField(v) {
+      v = String(v == null ? "" : v);
+      return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+    }
+
+    function buildCsv() {
+      var header = [
+        "Pool",
+        "Player 1",
+        "Player 1 Payment Status",
+        "Player 1 Payment Date",
+        "Player 1 Remarks",
+        "Player 2",
+        "Player 2 Payment Status",
+        "Player 2 Payment Date",
+        "Player 2 Remarks",
+      ];
+      var rows = [header.join(",")];
+      Object.keys(state.groups)
+        .sort()
+        .forEach(function (letter) {
+          state.groups[letter].forEach(function (t) {
+            rows.push(
+              [
+                letter,
+                csvField(t.p1),
+                "Unpaid",
+                "",
+                "",
+                csvField(t.p2),
+                "Unpaid",
+                "",
+                "",
+              ].join(","),
+            );
+          });
+        });
+      return rows.join("\r\n") + "\r\n";
+    }
+
+    function renderResults() {
+      resultsGridEl.innerHTML = "";
+      Object.keys(state.groups)
+        .sort()
+        .forEach(function (letter) {
+          var teams = state.groups[letter];
+          var card = document.createElement("div");
+          card.className = "result-card";
+          var head = document.createElement("div");
+          head.className = "letter";
+          head.innerHTML =
+            "Group " +
+            letter +
+            '<span class="n">' +
+            teams.length +
+            " team" +
+            (teams.length === 1 ? "" : "s") +
+            "</span>" +
+            (teams.length < state.minPerPool
+              ? '<span class="below-min">Below your ' +
+                state.minPerPool +
+                "-per-pool minimum</span>"
+              : "");
+          card.appendChild(head);
+          var ol = document.createElement("ol");
+          teams.forEach(function (t) {
+            var li = document.createElement("li");
+            li.textContent = t.p1 + " / " + t.p2;
+            ol.appendChild(li);
+          });
+          card.appendChild(ol);
+          resultsGridEl.appendChild(card);
+        });
+    }
+
+    document
+      .getElementById("btnDownloadCsv")
+      .addEventListener("click", function () {
+        var blob = new Blob([buildCsv()], { type: "text/csv;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "draw-results.csv";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 1000);
+        showToast("Downloaded draw-results.csv");
+      });
+
+    document
+      .getElementById("btnCopyText")
+      .addEventListener("click", function () {
+        var lines = [];
+        Object.keys(state.groups)
+          .sort()
+          .forEach(function (letter) {
+            lines.push("Group " + letter + ":");
+            state.groups[letter].forEach(function (t) {
+              lines.push("  " + t.p1 + " / " + t.p2);
+            });
+            lines.push("");
+          });
+        var text = lines.join("\n");
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            showToast("Copied to clipboard.");
+          });
+        } else {
+          showToast("Copy isn't available in this browser.");
+        }
+      });
+
+    document
+      .getElementById("btnBackToDraw")
+      .addEventListener("click", function () {
+        goToScreen("draw");
+        renderDrawScreen(false);
+      });
+    document
+      .getElementById("btnStartOver")
+      .addEventListener("click", function () {
+        if (
+          !confirm(
+            "Start a brand-new draw? This clears the current roster and results.",
+          )
+        )
+          return;
+        state = freshState();
+        save();
+        document.getElementById("pasteBox").value = "";
+        renderRoster();
+        numGroupsInput.value = state.numGroups;
+        minPerPoolInput.value = state.minPerPool;
+        maxPerPoolInput.value = state.maxPerPool;
+        calcPairsInput.value = state.calcPairs;
+        syncGroupStats();
+        goToScreen("setup");
+      });
+
+    // ---------------------------------------------------------------
+    // Screen navigation + toast + init
+    // ---------------------------------------------------------------
+    function goToScreen(name) {
+      state.screen = name;
+      save();
+      document.querySelectorAll(".screen").forEach(function (s) {
+        s.classList.remove("visible");
+      });
+      document.getElementById("screen-" + name).classList.add("visible");
+      document.querySelectorAll(".step").forEach(function (s) {
+        var order = ["setup", "draw", "results"];
+        var stepIdx = order.indexOf(s.getAttribute("data-step"));
+        var curIdx = order.indexOf(name);
+        s.classList.toggle("active", stepIdx === curIdx);
+        s.classList.toggle("done", stepIdx < curIdx);
+      });
+    }
+
+    var toastEl = document.getElementById("toast");
+    var toastTimer = null;
+    function showToast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        toastEl.classList.remove("show");
+      }, 2600);
+    }
+
+    function init() {
+      numGroupsInput.value = state.numGroups || 4;
+      minPerPoolInput.value = state.minPerPool || 4;
+      maxPerPoolInput.value = state.maxPerPool || 6;
+      calcPairsInput.value = state.calcPairsManual
+        ? state.calcPairs || 0
+        : state.teams.length;
+      renderRoster();
+      syncGroupStats();
+      if (
+        state.screen === "draw" &&
+        state.unassigned &&
+        state.unassigned.length >= 0 &&
+        Object.keys(state.groups).length
+      ) {
+        goToScreen("draw");
+        renderDrawScreen(true);
+      } else if (
+        state.screen === "results" &&
+        Object.keys(state.groups).length
+      ) {
+        goToScreen("results");
+        renderResults();
+      } else {
+        goToScreen("setup");
+      }
+    }
+
+    // Footer trial-validity line, with a heads-up in the final week.
+    (function showTrialNote() {
+      var el = document.getElementById("expiryNote");
+      if (!el) return;
+      var endsAt = firstOpenAt + TRIAL_MS;
+      var daysLeft = Math.max(0, Math.ceil((endsAt - Date.now()) / DAY_MS));
+      var pretty = new Date(endsAt).toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+      if (daysLeft <= 7) {
+        el.className = "footer-note expiry-soon";
+        el.textContent =
+          "Trial ends in " +
+          daysLeft +
+          (daysLeft === 1 ? " day" : " days") +
+          " (" + pretty + ") — ask the organiser for a fresh copy";
+      } else {
+        el.textContent = TRIAL_DAYS + "-day trial — valid until " + pretty;
+      }
+    })();
+
+    // Offline support once the file is served over HTTPS (or localhost).
+    // Harmless no-op when opened straight from the file system.
+    if (
+      "serviceWorker" in navigator &&
+      (location.protocol === "https:" ||
+        location.hostname === "localhost" ||
+        location.hostname === "127.0.0.1")
+    ) {
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
+    }
+
+    init();
+  })();
+</script>
+</body>
+</html>
