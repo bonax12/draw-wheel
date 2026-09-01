@@ -14,7 +14,7 @@ var CORE = ["./", "./pickleball_draw_wheel.html", "./assets/speedup-logo.png"];
 // cross-context "when was this first opened" record, shared with this
 // worker via IndexedDB and Cache Storage (both same-origin, both
 // reachable from a service worker; localStorage/cookies are not).
-var TRIAL_DAYS = 0;
+var TRIAL_DAYS = 30;
 var DAY_MS = 86400000;
 var TRIAL_MS = TRIAL_DAYS * DAY_MS;
 var FIRST_OPEN_DB = "pb-draw-wheel-trial-db";
