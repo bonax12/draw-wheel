@@ -5,12 +5,12 @@
  * it is ignored when the HTML file is opened directly from disk.
  *
  * Bump CACHE_NAME every time you ship a new build of
- * pickleball_draw_wheel.html so installed copies pick up the change.
+ * index.html so installed copies pick up the change.
  */
-var CACHE_NAME = "pb-draw-wheel-shell-v3";
-var CORE = ["./", "./pickleball_draw_wheel.html", "./assets/speedup-logo.png"];
+var CACHE_NAME = "pb-draw-wheel-shell-v4";
+var CORE = ["./", "./index.html", "./assets/speedup-logo.png"];
 
-// Must match the constants in pickleball_draw_wheel.html -- this is the
+// Must match the constants in index.html -- this is the
 // cross-context "when was this first opened" record, shared with this
 // worker via IndexedDB and Cache Storage (both same-origin, both
 // reachable from a service worker; localStorage/cookies are not).
@@ -150,7 +150,7 @@ self.addEventListener("fetch", function (event) {
                   return res;
                 })
                 .catch(function () {
-                  return caches.match("./pickleball_draw_wheel.html");
+                  return caches.match("./index.html");
                 })
             );
           });
